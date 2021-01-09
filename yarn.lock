@@ -4316,6 +4316,13 @@ react-is@^17.0.1:
   resolved "https://r.cnpmjs.org/react-is/download/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha1-WzUxvXamRaTJ+25pPtNkGeMwEzk=
 
+react-native-game-engine@^1.2.0:
+  version "1.2.0"
+  resolved "https://r.cnpmjs.org/react-native-game-engine/download/react-native-game-engine-1.2.0.tgz#a1a049cf9ab9a60607618cafcef8648429f4a817"
+  integrity sha1-oaBJz5q5pgYHYYyvzvhkhCn0qBc=
+  dependencies:
+    rxjs "^6.2.2"
+
 react-native-safe-area-context@3.1.9:
   version "3.1.9"
   resolved "https://r.cnpmjs.org/react-native-safe-area-context/download/react-native-safe-area-context-3.1.9.tgz#48864ea976b0fa57142a2cc523e1fd3314e7247e"
@@ -4562,6 +4569,13 @@ rxjs@^5.4.3:
   integrity sha1-b6YbinfD15PbrycL7i9D9lLXQcw=
   dependencies:
     symbol-observable "1.0.1"
+
+rxjs@^6.2.2:
+  version "6.6.3"
+  resolved "https://r.cnpmjs.org/rxjs/download/rxjs-6.6.3.tgz#8ca84635c4daa900c0d3967a6ee7ac60271ee552"
+  integrity sha1-jKhGNcTaqQDA05Z6buesYCce5VI=
+  dependencies:
+    tslib "^1.9.0"
 
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
@@ -5032,6 +5046,11 @@ toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://r.cnpmjs.org/toidentifier/download/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha1-fhvjRw8ed5SLxD2Uo8j013UrpVM=
+
+tslib@^1.9.0:
+  version "1.14.1"
+  resolved "https://r.cnpmjs.org/tslib/download/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
+  integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=
 
 type-fest@^0.7.1:
   version "0.7.1"
