@@ -14,19 +14,22 @@ import Ball from './Ball';
 // 添加Walls 1/3
 import Wall from './Wall';
 
-const createObject = (x, y) => ({ position: { x: x, y: y } });
+import { Physics, physicsEntity, createWall, createBall } from './Physics';
+
+// const createObject = (x, y) => ({ position: { x: x, y: y } });
 
 // 添加Ball 2/3
 const { width, height } = Dimensions.get("screen");
 const ballSize = Math.trunc(Math.max(width, height) * 0.075);
-const ball = createObject(width / 2, height / 2);
+const ball = createBall(width / 2, height / 2, ballSize / 2);
 
 // 添加Walls 2/3
 const wallColor = "#335"
 const wallSize = ballSize * 0.5;
-const floor = createObject(width / 2, height - wallSize / 2);
-const leftwall = createObject(wallSize / 2, height / 2);
-const rightwall = createObject(width - wallSize / 2, height / 2);
+const floor = createWall(width / 2, height - wallSize / 2, width, wallSize);
+const leftwall = createWall(wallSize / 2, height / 2, wallSize, height);
+const rightwall = createWall(width - wallSize / 2, height / 2, wallSize, height);
+
 
 
 export default function App() {
@@ -34,7 +37,9 @@ export default function App() {
   return (
     <GameEngine
       style={styles.container}
+      systems={[Physics]}
       entities={{
+        physics: physicsEntity,
         // 添加Ball 3/3
         ball: {
           body: ball,

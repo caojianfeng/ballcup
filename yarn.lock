@@ -3390,6 +3390,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+matter-js@^0.15.0:
+  version "0.15.0"
+  resolved "https://r.cnpmjs.org/matter-js/download/matter-js-0.15.0.tgz#92b86b3b374a8b948657697fc07c16e3bc86e2d7"
+  integrity sha1-krhrOzdKi5SGV2l/wHwW47yG4tc=
+
 md5-file@^3.2.3:
   version "3.2.3"
   resolved "https://r.cnpmjs.org/md5-file/download/md5-file-3.2.3.tgz#f9bceb941eca2214a4c0727f5e700314e770f06f"
@@ -4191,6 +4196,11 @@ plugin-error@^0.1.2:
     arr-diff "^1.0.1"
     arr-union "^2.0.1"
     extend-shallow "^1.1.2"
+
+poly-decomp@^0.3.0:
+  version "0.3.0"
+  resolved "https://r.cnpmjs.org/poly-decomp/download/poly-decomp-0.3.0.tgz#aa499289bbc1a4ca2213e966587fa5bffc1ca5f5"
+  integrity sha1-qkmSibvBpMoiE+lmWH+lv/wcpfU=
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
