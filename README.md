@@ -279,6 +279,94 @@ export default function App() {
 
 ## 接下来添加物理引擎Matter
 
+```bash
+expo install matter-js poly-decomp 
+```
+或者
+```bash
+yarn add matter-js poly-decomp 
+```
+
+增加Physics.js
+```js
+import Matter from "matter-js";
+
+// 创建引擎
+const engine = Matter.Engine.create({ enableSleeping: false });
+const world = engine.world;
+// 引擎对象
+export const physicsEntity = {
+  engine: engine,
+  world: world
+};
+
+// 更新引擎
+export const Physics = (entities, { time }) => {
+  let engine = entities["physics"].engine;
+  Matter.Engine.update(engine, time.delta);
+  return entities;
+};
+
+
+//创建墙
+export const createWall = (x, y, w, h) => {
+  const wall = Matter.Bodies.rectangle(x, y, w, h, { isStatic: true })
+  Matter.World.add(world, wall);
+  return wall;
+};
+
+//创建球
+export const createBall = (x, y, r) => {
+  const ball = Matter.Bodies.circle(x, y, r, { frictionAir: 0.021 });
+  Matter.World.add(world, ball);
+  return ball;
+}
+```
+
+修改App.js:
+```js
+//...
+
+import { Physics, physicsEntity, createWall, createBall } from './Physics';
+
+// const createObject = (x, y) => ({ position: { x: x, y: y } });
+
+// 添加Ball 2/3
+const { width, height } = Dimensions.get("screen");
+const ballSize = Math.trunc(Math.max(width, height) * 0.075);
+const ball = createBall(width / 2, height / 2, ballSize / 2);
+
+// 添加Walls 2/3
+const wallColor = "#335"
+const wallSize = ballSize * 0.5;
+const floor = createWall(width / 2, height - wallSize / 2, width, wallSize);
+const leftwall = createWall(wallSize / 2, height / 2, wallSize, height);
+const rightwall = createWall(width - wallSize / 2, height / 2, wallSize, height);
+
+export default function App() {
+  // 添加游戏引擎2/2
+  return (
+    <GameEngine
+      style={styles.container}
+      systems={[Physics]}
+      entities={{
+        physics: physicsEntity,
+        // 添加Ball 3/3
+        ball: {
+          // ...
+        },
+        //  ...
+      }} >
+    </ GameEngine>
+  );
+}
+//...
+```
+
+效果如图：
+
+![](screenshot/ball_fall.gif)
+
 # 参考资料：
 [expo accelerometer](https://docs.expo.io/versions/v40.0.0/sdk/accelerometer/)
 
