@@ -16,6 +16,22 @@ export const Physics = (entities, { time }) => {
   return entities;
 };
 
+// 点击创建球
+let ballIndex = 0;
+const ballColors = [ "#f93", "#f39", "#9f3", "#3f9", "#93f", "#39f"];
+export const CreateBalls = (renderer)=> (entities, { touches, screen }) => {
+  const ballSize = Math.trunc(Math.max(screen.width, screen.height) * 0.075);
+  
+  touches.filter(t => t.type === "press").forEach(t => {
+    entities[++ballIndex] = {
+      body: createBall(t.event.pageX, t.event.pageY, ballSize / 2),
+      size: [ballSize, ballSize],
+      color: ballColors[ballIndex % ballColors.length],
+      renderer: renderer
+    };
+  });
+  return entities;
+};
 
 //创建墙
 export const createWall = (x, y, w, h) => {
@@ -27,7 +43,7 @@ export const createWall = (x, y, w, h) => {
 //创建球
 export const createBall = (x, y, r) => {
   const ball = Matter.Bodies.circle(x, y, r, { frictionAir: 0.021 });
-  Matter.World.add(world, ball);
+  Matter.World.add(world, [ball]);
   return ball;
 
 }

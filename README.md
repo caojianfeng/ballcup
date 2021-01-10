@@ -126,7 +126,9 @@ const styles = StyleSheet.create({
 
 “此处省略全白截图一张”
 
-## 接下来添加物体
+## 添加物体
+
+结束空空荡荡的状态
 
 ### 添加Ball
 
@@ -277,7 +279,9 @@ export default function App() {
 ![](screenshot/add_wall_270x600.png)
 
 
-## 接下来添加物理引擎Matter
+## 添加物理引擎Matter
+
+让物体按照物理规律运动
 
 ```bash
 expo install matter-js poly-decomp 
@@ -366,6 +370,67 @@ export default function App() {
 效果如图：
 
 ![](screenshot/ball_fall.gif)
+
+
+## 添加点击事件
+
+当我们点击屏幕的时候创建一个圆球。
+
+Physics.js中添加CreateBalls
+```js
+// 点击创建球
+let ballIndex = 1;
+const ballColors = [ "#f93", "#f39", "#9f3", "#3f9", "#93f", "#39f"];
+export const CreateBalls = (renderer)=> (entities, { touches, screen }) => {
+  const ballSize = Math.trunc(Math.max(screen.width, screen.height) * 0.075);
+  
+  touches.filter(t => t.type === "press").forEach(t => {
+    entities[++ballIndex] = {
+      body: createBall(t.event.pageX, t.event.pageY, ballSize / 2),
+      size: [ballSize, ballSize],
+      color: ballColors[ballIndex % ballColors.length],
+      renderer: renderer
+    };
+  });
+  return entities;
+};
+
+```
+
+App.js中添加
+
+```js
+//...
+import {
+  //...
+  createBall,
+  CreateBalls
+} from './Physics';
+
+// ...
+export default function App() {
+  // 添加游戏引擎2/2
+  return (
+    <GameEngine
+      systems={[Physics, CreateBalls(Ball)]}
+      entities={{
+        //...
+      }} >
+      <StatusBar hidden={true} />
+    </ GameEngine>
+  );
+}
+//...
+
+```
+
+## 添加重力传感器
+
+```bash
+expo install expo-sensors
+```
+
+如果不用expo可以添加 react-native-sensors，用法大同小异
 
 # 参考资料：
 [expo accelerometer](https://docs.expo.io/versions/v40.0.0/sdk/accelerometer/)

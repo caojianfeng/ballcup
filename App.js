@@ -14,7 +14,13 @@ import Ball from './Ball';
 // 添加Walls 1/3
 import Wall from './Wall';
 
-import { Physics, physicsEntity, createWall, createBall } from './Physics';
+import {
+  Physics,
+  physicsEntity,
+  createWall,
+  createBall,
+  CreateBalls
+} from './Physics';
 
 // const createObject = (x, y) => ({ position: { x: x, y: y } });
 
@@ -37,7 +43,7 @@ export default function App() {
   return (
     <GameEngine
       style={styles.container}
-      systems={[Physics]}
+      systems={[Physics, CreateBalls(Ball)]}
       entities={{
         physics: physicsEntity,
         // 添加Ball 3/3
