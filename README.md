@@ -1,5 +1,6 @@
+很多情况下需要我们在app中加入游戏性的元素，比如给小朋友用的学习类软件。做成游戏的形式会比较讨巧。
 
-本项目仅仅是一个demo，用来探索用RN开发游戏的可能性，离一个完整的游戏还差的比较远
+本文目的，探索用RN开发游戏的可能性，本文所做的尝试离开发一个完整的游戏还差的比较远
 
 # 准备：
 1. 安装RN开发环境
@@ -62,7 +63,7 @@ yarn android
 
 ![](screenshot/init_app_270x600.png)
 
-到此为止我们的准备工作已经就绪可以愉快的玩耍了。
+到此为止我们的准备工作已经就绪，可以愉快的玩耍了。
 
 # 开发：
 
@@ -294,7 +295,7 @@ expo install matter-js poly-decomp
 yarn add matter-js poly-decomp 
 ```
 
-增加Physics.js
+创建文件Physics.js
 ```js
 import Matter from "matter-js";
 
@@ -377,7 +378,7 @@ export default function App() {
 
 ## 添加点击事件
 
-当我们点击屏幕的时候创建一个圆球。
+每当我们点击屏幕的时候都会创建一个圆球。
 
 Physics.js中添加CreateBalls
 ```js
@@ -500,3 +501,11 @@ export default function App() {
 # 源码地址
 
 https://github.com/caojianfeng/ballcup
+
+
+# 总结
+
+用RNGM+Matter+sensors这样的组合来开发游戏，有明显的优点：
+1. 上手容易。
+2. 代码量少，易于维护。
+3. 性能好，一般的场景下不会卡顿。
