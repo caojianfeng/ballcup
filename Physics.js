@@ -1,5 +1,6 @@
 import Matter from "matter-js";
-
+import { useState, useEffect } from 'react';
+import { Accelerometer } from 'expo-sensors';
 // 创建引擎
 const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -47,3 +48,27 @@ export const createBall = (x, y, r) => {
   return ball;
 
 }
+
+
+export const useAccelerometer = () => {
+  const [subscription, setSubscription] = useState(null);
+  const subscribeAccelerometer = () => {
+    setSubscription(
+      Accelerometer.addListener(accelerometerData => {
+        const { x, y, z } = accelerometerData;
+        world.gravity.x = -x;
+        world.gravity.y = y;
+      })
+    );
+  };
+
+  const unsubscribeAccelerometer = () => {
+    subscription && subscription.remove();
+    setSubscription(null);
+  };
+
+  useEffect(() => {
+    subscribeAccelerometer();
+    return () => unsubscribeAccelerometer();
+  }, []);
+} 

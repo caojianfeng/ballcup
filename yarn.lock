@@ -2357,6 +2357,13 @@ expo-secure-store@~9.3.0:
   resolved "https://r.cnpmjs.org/expo-secure-store/download/expo-secure-store-9.3.0.tgz#b716d5d115cc50a34037d1afef84fe4b8ea0745c"
   integrity sha1-txbV0RXMUKNAN9Gv74T+S46gdFw=
 
+expo-sensors@~9.2.0:
+  version "9.2.0"
+  resolved "https://registry.npm.taobao.org/expo-sensors/download/expo-sensors-9.2.0.tgz#4b0c0f85236c874eb99646114e05bb1bd2172058"
+  integrity sha1-SwwPhSNsh065lkYRTgW7G9IXIFg=
+  dependencies:
+    invariant "^2.2.4"
+
 expo-sqlite@~8.5.0:
   version "8.5.0"
   resolved "https://r.cnpmjs.org/expo-sqlite/download/expo-sqlite-8.5.0.tgz#236b87b72b6855a01db8869514dfa2da3da563ac"

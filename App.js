@@ -19,7 +19,8 @@ import {
   physicsEntity,
   createWall,
   createBall,
-  CreateBalls
+  CreateBalls,
+  useAccelerometer
 } from './Physics';
 
 // const createObject = (x, y) => ({ position: { x: x, y: y } });
@@ -39,6 +40,7 @@ const rightwall = createWall(width - wallSize / 2, height / 2, wallSize, height)
 
 
 export default function App() {
+  useAccelerometer()
   // 添加游戏引擎2/2
   return (
     <GameEngine
