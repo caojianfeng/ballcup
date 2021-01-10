@@ -488,7 +488,7 @@ export default function App() {
 
 现在你可以通过调整手机角度来改变重力方向了，效果如图：
 
-![](screenshot/ball_fall.gif)
+![](screenshot/use_accelerometer.gif)
 
 # 参考资料：
 [My Journey with React Native Game Engine Part I: Starting the Project](https://medium.com/@williamyang93/my-journey-with-react-native-game-engine-part-i-starting-the-project-bbebcd2ccf6)
