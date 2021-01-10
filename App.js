@@ -52,7 +52,7 @@ export default function App() {
         ball: {
           body: ball,
           size: [ballSize, ballSize],
-          color: '#f93',
+          color: '#fff',
           renderer: Ball
         },
         // 添加Walls 3/3

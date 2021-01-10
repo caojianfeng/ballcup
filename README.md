@@ -1,3 +1,6 @@
+
+本项目仅仅是一个demo，用来探索用RN开发游戏的可能性，离一个完整的游戏还差的比较远
+
 # 准备：
 1. 安装RN开发环境
 安装RN的文章资料应该满世界都有，这里就不重复了。
@@ -432,12 +435,68 @@ expo install expo-sensors
 
 如果不用expo可以添加 react-native-sensors，用法大同小异
 
+修改Physics.js
+```
+//...
+import { useState, useEffect } from 'react';
+import { Accelerometer } from 'expo-sensors';
+//...
+export const useAccelerometer = () => {
+  const [subscription, setSubscription] = useState(null);
+  const subscribeAccelerometer = () => {
+    setSubscription(
+      Accelerometer.addListener(accelerometerData => {
+        const { x, y, z } = accelerometerData;
+        world.gravity.x = -x;
+        world.gravity.y = y;
+      })
+    );
+  };
+
+  const unsubscribeAccelerometer = () => {
+    subscription && subscription.remove();
+    setSubscription(null);
+  };
+
+  useEffect(() => {
+    subscribeAccelerometer();
+    return () => unsubscribeAccelerometer();
+  }, []);
+} 
+```
+
+修改App.js 调用useAccelerometer
+```js
+// ...
+import {
+  // ...
+  CreateBalls,
+  useAccelerometer
+} from './Physics';
+// ...
+export default function App() {
+  useAccelerometer()
+  // 添加游戏引擎2/2
+  return (
+    <GameEngine>
+    //...
+    </ GameEngine>
+  );
+}
+
+```
+
+现在你可以通过调整手机角度来改变重力方向了，效果如图：
+
+![](screenshot/ball_fall.gif)
+
 # 参考资料：
-[expo accelerometer](https://docs.expo.io/versions/v40.0.0/sdk/accelerometer/)
-
-
 [My Journey with React Native Game Engine Part I: Starting the Project](https://medium.com/@williamyang93/my-journey-with-react-native-game-engine-part-i-starting-the-project-bbebcd2ccf6)
 
 [My Journey with React Native Game Engine Part II: Adding Touch and Bounce](https://medium.com/@williamyang93/my-journey-with-react-native-game-engine-part-ii-adding-touch-and-bounce-b9ae3fac06b9)
 
+[expo accelerometer](https://docs.expo.io/versions/v40.0.0/sdk/accelerometer/)
+
 # 源码地址
+
+https://github.com/caojianfeng/ballcup
